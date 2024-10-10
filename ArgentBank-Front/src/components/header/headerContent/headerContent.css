@@ -1,0 +1,25 @@
+.content-header {
+    position: absolute;
+    top: 20%;
+    right: 5%;
+    width: 300px;
+    background-color: white;
+    text-align: left;
+    font-family: Helvetica;
+    color: #2c3e50;
+    padding: 2rem;
+}
+
+.h2-header {
+    display: none;
+}
+
+.subtitle-header {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.paragraph-header {
+    font-size: 1.2rem;
+    margin-top: 19px;
+}

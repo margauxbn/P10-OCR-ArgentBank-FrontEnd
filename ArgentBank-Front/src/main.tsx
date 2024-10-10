@@ -1,6 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import App from './App.tsx'
+import App from './App.tsx';
+import Connection from './pages/connection/connection.tsx';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -32,8 +33,8 @@ const router = createBrowserRouter([
         element: <App />,
       },
       {
-        path: "/connexion",
-        element: <div>Connexion</div>      
+        path: "/connection",
+        element: <Connection />
       },
       {
         path: "/user",
