@@ -4,9 +4,9 @@ function Footer() {
 
     return (
         <>
-            <nav>
-                hello c'est le footer           
-            </nav>
+            <footer>
+                <p className="text-footer">Copyright 2020 Argent Bank</p>
+            </footer>
 
         </>
     );
