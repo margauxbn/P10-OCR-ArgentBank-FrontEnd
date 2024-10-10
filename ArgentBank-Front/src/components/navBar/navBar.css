@@ -1,0 +1,30 @@
+nav {
+    display: flex;
+    flex-direction: row;
+    padding: 5px 20px 5px 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-navbar {
+    width: 200px;
+}
+
+.btn-signin {
+    display: flex;
+    border: 0;
+    color: #2c3e50;
+    font-weight: bold;
+    background-color: transparent;
+    margin-right: 8px;
+}
+
+.fa-circle-user {
+    padding-right: 5px;
+}
+
+.text-signin:hover {
+    cursor: pointer;
+    text-decoration: underline ;
+}
+
