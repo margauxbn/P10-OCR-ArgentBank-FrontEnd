@@ -3,8 +3,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    position: relative;
-    top: 20px;
+    padding-top: 20px;
     margin-bottom: 2rem;
     font-family: Helvetica;
 }

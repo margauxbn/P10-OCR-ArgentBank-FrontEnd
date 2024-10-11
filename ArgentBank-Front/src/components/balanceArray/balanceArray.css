@@ -1,0 +1,29 @@
+.balance-array {
+    background-color: #00bc77;
+    color: #fff;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: row;
+    padding: 14px;
+    width: 60%;
+    align-items: center;
+    font-family: Helvetica;
+    font-weight: bold;
+}
+
+.array-date {
+    margin-left: 20px;
+    margin-right: 100px;
+}
+
+.array-description {
+    margin-right: 530px;
+}
+
+.array-price {
+    margin-right: 80px;
+}
+
+.array-balance {
+    margin-right: 80px;
+}
