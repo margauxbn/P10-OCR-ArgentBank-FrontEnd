@@ -1,0 +1,95 @@
+{
+    "features": [
+        {
+            "icon": "../src/assets/img/icon-chat.png",
+            "title": "You are our #1 priority",
+            "description": "Need to talk to a representative? You can get in touch through our 24/7 chat or through a phone call in less than 5 minutes."
+        },
+        {
+            "icon": "../src/assets/img/icon-money.png",
+            "title": "More savings means higher rates",
+            "description": "The more you save with us, the higher your interest rate will be!"
+        },
+        {
+            "icon": "../src/assets/img/icon-security.png",
+            "title": "Security you can trust",
+            "description": "We use top of the line encryption to make sure your data and money is always safe."
+        }
+    ],
+
+    "user": [
+        {
+            "firstname": "Tony",
+            "lastname": "Jarvis"
+        }
+    ],
+    
+    "balance": [
+        {
+            "title": "Argent Bank Checking (x8349)",
+            "amount": "$2,082.79",
+            "status": "Available Balance"
+        },
+        {
+            "title": "Argent Bank Savings (x6712)",
+            "amount": "$10,928.42",
+            "status": "Available Balance"
+        },
+        {
+            "title": "Argent Bank Credit Card (x8349)",
+            "amount": "$184.30",
+            "status": "Current Balance"
+        }
+    ],
+
+    "transaction": [
+        {
+            "date": "28/02/20",
+            "description": "Golden Sun Bakery",
+            "amount": "$8.00",
+            "balance": "$298.00"
+        },
+        {
+            "date": "20/02/20",
+            "description": "Tesco",
+            "amount": "$154.90",
+            "balance": "$381.00"
+        },
+        {
+            "date": "16/02/20",
+            "description": "River Island",
+            "amount": "56.10",
+            "balance": "$105.70"
+        },
+        {
+            "date": "10/02/20",
+            "description": "IKEA",
+            "amount": "$71.48",
+            "balance": "$217.00"
+        },
+        {
+            "date": "08/02/20",
+            "description": "DFS",
+            "amount": "$89.40",
+            "balance": "$150.80"
+        },
+        {
+            "date": "02/02/20",
+            "description": "Sephora",
+            "amount": "$54.51",
+            "balance": "$182.17"
+        },
+        {
+            "date": "29/01/20",
+            "description": "Clarks",
+            "amount": "$40.04",
+            "balance": "$152.58"
+        },
+        {
+            "date": "25/01/20",
+            "description": "Mark & Spencer",
+            "amount": "$152.45",
+            "balance": "$450.11"
+        }
+    ]
+}
