@@ -1,19 +1,23 @@
 import './transaction.css';
 import BalanceTitle from '../../components/balanceTitle/BalanceTitle';
 import BalanceArray from '../../components/balanceArray/BalanceArray';
+import data from "../../database.json";
 
 function Transaction() {
   return (
     <>
         <div className='transaction-block'>
             <BalanceTitle />
-            <BalanceArray />
-            <BalanceArray />
-            <BalanceArray />
-            <BalanceArray />
-            <BalanceArray />
-            <BalanceArray />
-            <BalanceArray />
+            {data.transaction.map((transaction, index) => (
+          <BalanceArray 
+            key={index} 
+            date={transaction.date} 
+            description={transaction.description} 
+            amount={transaction.amount}
+            balance={transaction.balance}
+          />
+        ))}
+
         </div>
     </>
   )

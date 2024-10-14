@@ -5,7 +5,7 @@ function Header() {
   return (
     <>
         <div className='header'>
-            <img src='../src/assets/img/bank-tree.jpeg' className='header-banner'alt='A plant in a pot of coins'/>
+            <img src='../src/assets/img/bank-tree.webp' className='header-banner'alt='A plant in a pot of coins'/>
             <HeaderContent/>
         </div>
     </>

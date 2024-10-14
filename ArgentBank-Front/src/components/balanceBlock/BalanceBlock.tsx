@@ -1,14 +1,20 @@
 import './balanceBlock.css';
 import { Link } from 'react-router-dom';
 
-function BalanceBlock() {
+interface BalanceBlockProps {
+    title: string;
+    amount: string;
+    status: string;
+}
+
+function BalanceBlock(props:BalanceBlockProps) {
   return (
     <>
         <div className='balance-block'>
             <div className='balance-information'>
-                <h3 className='balance-title'>Argent Bank Checking x8349</h3>
-                <p className='balance-amount'>$2,082.79</p>
-                <p className='balance-information'>Available Balance</p>    
+                <h3 className='balance-title'>{props.title}</h3>
+                <p className='balance-amount'>{props.amount}</p>
+                <p className='balance-information'>{props.status}</p>    
             </div>
             <div>
                 <Link to ='/transaction'>
