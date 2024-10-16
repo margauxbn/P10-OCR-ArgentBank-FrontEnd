@@ -10,10 +10,6 @@ nav {
     width: 200px;
 }
 
-.h1-navbar {
-    display: none;
-}
-
 .btn-signin {
     display: flex;
     border: 0;

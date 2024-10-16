@@ -9,7 +9,6 @@ function NavBar() {
             <nav>
                 <Link to="/">
                     <img src="../src/assets/img/argentBankLogo.png" alt="Argent Bank's logo" className="logo-navbar"/>
-                    <h1 className="h1-navbar">Argent Bank</h1>      
                 </Link>
                 
                 <Link to="/connection">
