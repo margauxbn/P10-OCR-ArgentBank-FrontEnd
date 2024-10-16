@@ -1,4 +1,5 @@
 import './userAccount.css';
+import { useState } from 'react';  
 import EditNameForm from '../editNameForm/EditNameForm';
 
 interface UserAccountProps {
@@ -6,16 +7,27 @@ interface UserAccountProps {
   lastname: string;
 }
 
-function UserAccount(props:UserAccountProps) {
+function UserAccount(props: UserAccountProps) {
+  const [showEditForm, setShowEditForm] = useState(false);
+
+  const toggleEditForm = () => {
+    setShowEditForm(!showEditForm); 
+  };
+
   return (
     <>
-       <div className='user-account-block'>
-            <h2 className='user-title'>Welcome back<br/>{props.firstname} {props.lastname} !</h2>
-            <button className='btn-edit-name'>Edit name</button>
-            <EditNameForm />
-       </div>
+      <div className='user-account-block'>
+        <h2 className='user-title'>
+          Welcome back<br />
+          {props.firstname} {props.lastname} !
+        </h2>
+        <button className='btn-edit-name' onClick={toggleEditForm}>
+          {showEditForm ? 'Cancel' : 'Edit name'}
+        </button>
+        {showEditForm && <EditNameForm />}
+      </div>
     </>
-  )
+  );
 }
 
-export default UserAccount
+export default UserAccount;

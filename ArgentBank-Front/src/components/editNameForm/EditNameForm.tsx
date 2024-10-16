@@ -15,7 +15,6 @@ function EditNameForm() {
         </div>
         <div className="button-edit-group">
           <button className='button-edit-name'>Save</button>
-          <button className='button-edit-name'>Cancel</button>
         </div>
       </form>
     </div>
