@@ -1,3 +1,5 @@
 .user-page {
+    min-height: 84vh;
+    height: 100%;
     background-color: #12002b;
 }

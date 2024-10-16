@@ -10,13 +10,11 @@
     padding: 2rem;
 }
 
-.h2-header {
-    display: none;
-}
-
-.subtitle-header {
+.title-header {
     font-size: 1.5rem;
     font-weight: bold;
+    display: flex;
+    flex-direction: column;
 }
 
 .paragraph-header {

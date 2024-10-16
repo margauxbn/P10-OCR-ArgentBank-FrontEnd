@@ -5,10 +5,11 @@ function HeaderContent() {
   return (
     <>
       <div className='content-header'>
-        <h2 className='h2-header'>Promoted content</h2>
-        <p className='subtitle-header'>No fees.</p>
-        <p className='subtitle-header'>No minimum deposit.</p>
-        <p className='subtitle-header'>High interest rates.</p>
+        <h1 className='title-header'>
+          <span>No fees.</span>
+          <span>No minimum deposit.</span>
+          <span>High interest rates.</span>
+        </h1>
         <p className='paragraph-header'>Open a savings account with Argent Bank today !</p>
       </div>
     </>
