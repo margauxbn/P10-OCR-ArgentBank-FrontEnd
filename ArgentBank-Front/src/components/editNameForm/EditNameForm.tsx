@@ -5,6 +5,10 @@ function EditNameForm() {
     <>
     <div className="change-name-form">
       <form className='edit-form'>
+      <div className="form-edit-group">
+          <label className='label-edit-form'>Username</label>
+          <input type="text" className='input-edit-form'/>
+        </div>
         <div className="form-edit-group">
           <label className='label-edit-form'>First Name</label>
           <input type="text" className='input-edit-form'/>
