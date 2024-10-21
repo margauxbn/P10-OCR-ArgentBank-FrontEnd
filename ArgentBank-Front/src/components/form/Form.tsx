@@ -1,29 +1,29 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import './form.css';
-import { login } from "../../redux/userSlice";
+import React, { useState } from "react";
+import { useDispatch } from 'react-redux';
+import { login } from '../../redux/userSlice';
+import { userApi } from '../../redux/apiUser';
+import { useNavigate } from 'react-router-dom';
 
-interface Credentials {
-  username: string;
-  password: string;
-}
 
 const Form: React.FC = () => {
-  const [username, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const dispatch = useDispatch(); 
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError('');
 
-    dispatch(
-      login({
-        username,
-        password,
-        loggedIn: true,
-      } as Credentials) 
-    );
+    try {
+        const data = await userApi.login({ email, password });
+        dispatch(login(data.token)); 
+        navigate('http://localhost:5173/user');
+    } catch (err) {
+        setError('Login failed. Please try again.');
+    }
   };
 
   return (
@@ -32,15 +32,15 @@ const Form: React.FC = () => {
       <h2 className='title-form'>Sign In</h2>
       <form className='form-signin' onSubmit={handleSubmit}>
         <div className='form-information'>
-          <label htmlFor='username' className='label-form'>Username</label>
+          <label htmlFor='email' className='label-form'>E-mail</label>
           <input
             type='text'
-            id='username'
-            name='username'
+            id='email'
+            name='email'
             className='input-form'
             required
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className='form-information'>
@@ -60,6 +60,7 @@ const Form: React.FC = () => {
           <label htmlFor="remember-me" className='label-remember'>Remember me</label>
         </div>
         <button type='submit' className='btn-form'>Sign In</button>
+        {error && <p className='error-message'>{error}</p>}
       </form>
     </div>
   );

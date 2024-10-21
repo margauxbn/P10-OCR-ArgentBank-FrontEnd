@@ -12,8 +12,8 @@ import {
 import NavBar from './components/navBar/NavBar.tsx';
 import Footer from './components/footer/Footer.tsx';
 import "./index.css";
-import store from "./redux/store.ts";
 import { Provider } from 'react-redux';
+import { store } from "./redux/store.ts";
 
 const HeaderAndFooter = () => {
   return (
@@ -51,8 +51,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <Provider store={store}> {/* Enveloppez RouterProvider avec Provider */}
-      <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />      
     </Provider>
   </StrictMode>,
 );
