@@ -1,28 +1,60 @@
 import './form.css';
-import React, { useState } from "react";
-import { useDispatch } from 'react-redux';
-import { login } from '../../redux/userSlice';
-import { userApi } from '../../redux/apiUser';
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { useLogin } from '../../hooks/useLogin';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
 
 const Form: React.FC = () => {
-  const dispatch = useDispatch();
+  const { login, hasError } = useLogin();
+    
+  const token = useSelector((state: RootState) => state.user.token);
+  
+  const [userInputs, setUserInputs] = useState<{ email: string; password: string }>({
+    email: "",
+    password: "",
+  });
+  
+  const [submitError, setSubmitError] = useState<boolean>(false);
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setError('');
+  useEffect(() => {
+    if (token.length > 0) {
+      navigate('/user');
+    }
+  }, [token, navigate]);
 
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    const inputName = event.target.id;
+    setUserInputs({
+      ...userInputs,
+      [inputName]: event.target.value,
+    });
+    setSubmitError(false);
+  };
+
+  const handleLoginFormSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
+    event.preventDefault();
+  
     try {
-        const data = await userApi.login({ email, password });
-        dispatch(login(data.token)); 
-        navigate('http://localhost:5173/user');
-    } catch (err) {
-        setError('Login failed. Please try again.');
+      // Appeler la fonction de connexion
+      await login(userInputs.email, userInputs.password);
+
+      // Réinitialiser les inputs
+      setUserInputs({
+        email: "",
+        password: "",
+      });
+
+      // Réinitialiser les erreurs
+      setSubmitError(false);
+    } catch (error) {
+      // Afficher l'erreur dans la console
+      console.error(error);
+    
+      // Afficher une erreur à l'utilisateur
+      setSubmitError(true);
     }
   };
 
@@ -30,7 +62,7 @@ const Form: React.FC = () => {
     <div className='form-block'>
       <i className="fa-solid fa-circle-user"></i>
       <h2 className='title-form'>Sign In</h2>
-      <form className='form-signin' onSubmit={handleSubmit}>
+      <form className='form-signin' onSubmit={handleLoginFormSubmit}>
         <div className='form-information'>
           <label htmlFor='email' className='label-form'>E-mail</label>
           <input
@@ -39,8 +71,8 @@ const Form: React.FC = () => {
             name='email'
             className='input-form'
             required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={userInputs.email}
+            onChange={handleInputChange}
           />
         </div>
         <div className='form-information'>
@@ -51,8 +83,8 @@ const Form: React.FC = () => {
             name='password'
             className='input-form'
             required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={userInputs.password}
+            onChange={handleInputChange}
           />
         </div>
         <div className="form-remember">
@@ -60,7 +92,7 @@ const Form: React.FC = () => {
           <label htmlFor="remember-me" className='label-remember'>Remember me</label>
         </div>
         <button type='submit' className='btn-form'>Sign In</button>
-        {error && <p className='error-message'>{error}</p>}
+        {submitError && <p className='error-message'>Une erreur est survenue lors de la connnexion.</p>}
       </form>
     </div>
   );
