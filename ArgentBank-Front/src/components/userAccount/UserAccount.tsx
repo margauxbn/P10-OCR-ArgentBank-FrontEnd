@@ -24,7 +24,7 @@ function UserAccount(props: UserAccountProps) {
         <button className='btn-edit-name' onClick={toggleEditForm}>
           {showEditForm ? 'Cancel' : 'Edit name'}
         </button>
-        {showEditForm && <EditNameForm />}
+        {showEditForm && <EditNameForm setShowEditForm={setShowEditForm} />} 
       </div>
     </>
   );
