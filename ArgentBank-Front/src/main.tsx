@@ -15,6 +15,7 @@ import "./index.css";
 import { Provider } from 'react-redux';
 import { persistor, store } from "./redux/store";
 import { PersistGate } from 'redux-persist/integration/react';
+import PrivateRoute from './components/privateRoute/privateRoute.tsx';
 
 const HeaderAndFooter = () => {
   return (
@@ -40,11 +41,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/user",
-        element: <User />
+        element: <PrivateRoute element={<User />} /> 
       },
       {
         path: "/transaction",
-        element: <Transaction />
+        element: <PrivateRoute element={<Transaction />} />
       }
     ]
   },
