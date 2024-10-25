@@ -12,6 +12,7 @@ interface ProfileResponse {
   body: {
     firstName: string;
     lastName: string;
+    userName: string;
   }
 }
 
@@ -19,6 +20,7 @@ export const useProfile = () => {
   const [hasError, setHasError] = useState<boolean>(false);
   const [firstName, setFirstName] = useState<string>('');
   const [lastName, setLastName] = useState<string>('');
+  const [userName, setUserName] = useState<string>('');
   const token = useSelector((state : RootState) => state.user.token);
 
   const profile = async () : Promise<void> => {
@@ -26,9 +28,10 @@ export const useProfile = () => {
       const response : AxiosResponse<ProfileResponse> = await api.post('/api/v1/user/profile', null, {
         headers: { Authorization: `Bearer ${token}`}
       });
-      const { firstName, lastName } = response.data.body;
+      const { firstName, lastName, userName } = response.data.body;
       setFirstName(firstName);
       setLastName(lastName);
+      setUserName(userName);
     } catch (error) {
       setHasError(true);
       console.log(error);
@@ -39,6 +42,7 @@ export const useProfile = () => {
     profile,
     firstName,
     lastName,
+    userName,
     hasError
   }
 }

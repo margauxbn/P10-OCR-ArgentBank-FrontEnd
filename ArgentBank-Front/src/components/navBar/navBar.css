@@ -10,7 +10,7 @@ nav {
     width: 200px;
 }
 
-.btn-signin {
+.btn-sign-in-out {
     display: flex;
     border: 0;
     color: #2c3e50;
@@ -20,12 +20,30 @@ nav {
     margin-right: 8px;
 }
 
-.fa-circle-user {
+.fa-circle-user, .fa-circle-user, .fa-right-from-bracket {
     padding-right: 5px;
 }
 
-.text-signin:hover {
+.text-sign-in-out:hover {
     cursor: pointer;
-    text-decoration: underline ;
+    text-decoration: underline;
+}
+
+.block-navbar-signout {
+    display: flex;
+    flex-direction: row;
+}
+
+.user-navbar {
+    display: flex;
+    flex-direction: row;
+    margin-right: 20px;
+}
+
+.username-navbar {
+    color: #2c3e50;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: Helvetica;
 }
 

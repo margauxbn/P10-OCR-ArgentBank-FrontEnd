@@ -12,11 +12,12 @@ export const useEditName = () => {
   const [hasError, setHasError] = useState<boolean>(false);
   const token = useSelector((state : RootState) => state.user.token);
 
-  const editName = async (newFirstName: string, newLastName: string) => {
+  const editName = async (newFirstName: string, newLastName: string, newUserName: string) => {
     try {
       await api.put('/api/v1/user/profile', {
         firstName: newFirstName,
-        lastName: newLastName
+        lastName: newLastName,
+        userName: newUserName,
       }, {
         headers: { Authorization: `Bearer ${token}`}
       });

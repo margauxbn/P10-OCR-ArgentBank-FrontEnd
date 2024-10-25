@@ -18,8 +18,14 @@
     align-items: center;
 }
 
+.input-edit-form-username {
+    padding: 8px
+}
+
 .input-edit-form {
     padding: 8px;
+    background-color: #647a72;
+    cursor: default;
 }
 
 .button-edit-group {
