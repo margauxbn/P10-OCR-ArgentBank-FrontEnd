@@ -3,7 +3,6 @@ import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import Connection from './pages/connection/Connection.tsx';
 import User from './pages/user/user.tsx';
-import Transaction from './pages/transaction/Transaction.tsx';
 import {
   createBrowserRouter,
   RouterProvider,
