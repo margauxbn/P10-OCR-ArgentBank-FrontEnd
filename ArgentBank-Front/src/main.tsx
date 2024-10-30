@@ -43,10 +43,6 @@ const router = createBrowserRouter([
         path: "/user",
         element: <PrivateRoute element={<User />} /> 
       },
-      {
-        path: "/transaction",
-        element: <PrivateRoute element={<Transaction />} />
-      }
     ]
   },
 ]);

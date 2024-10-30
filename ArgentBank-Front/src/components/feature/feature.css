@@ -10,6 +10,7 @@
 
 .icon-feature {
     width: 100px;
+    height: 100px;
     border: 10px solid #00bc77;
     border-radius: 50%;
     padding: 1rem;
@@ -21,10 +22,17 @@
     padding-bottom: 20px;
     color: #222;
     font-weight: bold;
+    text-align: center;
 
 }
 
 .paragraph-feature {
     text-align: center;
     color: #2c3e50;
+}
+
+@media (max-width: 940px) {
+    .feature-block {
+      padding: 0 0 30px 0;
+    }
 }

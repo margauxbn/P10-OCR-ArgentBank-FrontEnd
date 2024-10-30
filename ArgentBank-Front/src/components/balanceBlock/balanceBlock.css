@@ -8,6 +8,7 @@
     padding: 20px;
     width: 80%;
     font-family: Helvetica;
+    box-sizing: border-box; 
 }
 
 .balance-title {
@@ -22,14 +23,32 @@
 
 .btn-view-transaction {
     width: 100%;
-    padding: 10px 25px 10px 25px;
+    padding: 10px 25px;
     font-size: 1.1rem;
     font-weight: bold;
     background-color: #00bc77;
-    border: #00bc77;
+    border: none;
     color: #fff;
 }
 
 .btn-view-transaction:hover {
     cursor: pointer;
+}
+
+@media (max-width: 940px) {
+    .balance-block {
+        flex-direction: column; 
+        align-items: center; 
+        width: 90%; 
+        padding: 15px;
+    }
+
+    .balance-title, .balance-amount, .balance-information {
+        text-align: center;
+    }
+
+    .btn-view-transaction {
+        width: auto; 
+        margin-top: 20px; 
+    }
 }
