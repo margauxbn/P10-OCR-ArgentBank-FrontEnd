@@ -5,10 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 
-
 const Form: React.FC = () => {
-  const { login, hasError } = useLogin();
-    
+  const { login, hasError } = useLogin(); 
   const token = useSelector((state: RootState) => state.user.token);
   
   const [userInputs, setUserInputs] = useState<{ email: string; password: string }>({
@@ -31,29 +29,23 @@ const Form: React.FC = () => {
       ...userInputs,
       [inputName]: event.target.value,
     });
-    setSubmitError(false);
+    setSubmitError(false); 
   };
 
   const handleLoginFormSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
   
     try {
-      // Appeler la fonction de connexion
       await login(userInputs.email, userInputs.password);
-
-      // Réinitialiser les inputs
+      
       setUserInputs({
         email: "",
         password: "",
       });
-
-      // Réinitialiser les erreurs
       setSubmitError(false);
     } catch (error) {
-      // Afficher l'erreur dans la console
       console.error(error);
-    
-      // Afficher une erreur à l'utilisateur
+      
       setSubmitError(true);
     }
   };
@@ -92,7 +84,9 @@ const Form: React.FC = () => {
           <label htmlFor="remember-me" className='label-remember'>Remember me</label>
         </div>
         <button type='submit' className='btn-form'>Sign In</button>
-        {submitError && <p className='error-message'>Une erreur est survenue lors de la connnexion.</p>}
+        {(submitError || hasError) && (
+          <p className='error-message'>Incorrect credentials.<br/>Please try again.</p>
+        )}
       </form>
     </div>
   );
