@@ -47,3 +47,28 @@ nav {
     font-family: Helvetica;
 }
 
+
+@media (max-width: 940px) {
+    nav {
+        padding: 5px 10px;
+    }
+
+    .logo-navbar {
+        width: 150px; 
+    }
+
+    .block-navbar-signout, .btn-sign-in-out {
+        display: flex;
+        align-items: center;
+        margin: 0;
+    }
+
+    .fa-circle-user, .fa-right-from-bracket {
+        font-size: 18px;
+        padding-right: 5px;
+    }
+
+    .text-sign-in-out {
+        font-size: 14px; 
+    }
+}

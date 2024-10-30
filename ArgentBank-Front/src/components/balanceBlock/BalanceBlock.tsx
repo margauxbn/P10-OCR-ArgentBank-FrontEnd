@@ -1,5 +1,4 @@
 import './balanceBlock.css';
-import { Link } from 'react-router-dom';
 
 interface BalanceBlockProps {
     title: string;
@@ -17,9 +16,7 @@ function BalanceBlock(props:BalanceBlockProps) {
                 <p className='balance-information'>{props.status}</p>    
             </div>
             <div>
-                <Link to ='/transaction'>
-                    <button className='btn-view-transaction'>View transactions</button>
-                </Link>
+                <button className='btn-view-transaction'>View transactions</button>
             </div>        
         </div>
     </>

@@ -4,3 +4,9 @@
   justify-content: space-around;
   padding: 30px;
 }
+
+@media (max-width: 940px) {
+  .features-section {
+    flex-direction: column;
+  }
+}
