@@ -9,69 +9,52 @@ basePath: /api/v1
 schemes:
   - http
 paths:
-  /user/login:
-    post:
-      tags:
-        - User Module
-      summary: Login
-      description: API for Login
-      parameters:
-        - in: body
-          name: body
-          description: Login Payload
-          required: true
-          schema:
-            $ref: '#/definitions/Login'
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: Login Successfully
-          schema:
-            $ref: '#/definitions/LoginResponse'
-        '400':
-          description: Invalid Fields
-        '500':
-          description: Internal Server Error
-  /user/signup:
-    post:
-      tags:
-        - User Module
-      summary: Signup
-      description: API for Signup
-      parameters:
-        - in: body
-          name: body
-          description: Signup Payload
-          required: true
-          schema:
-            $ref: '#/definitions/User'
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: Signup Successfully
-          schema:
-            $ref: '#/definitions/ApiResponse'
-        '400':
-          description: Invalid Fields
-        '500':
-          description: Internal Server Error
-  /user/profile:
+  /transactions/monthly:
     get:
       security:
         - Bearer: []
       tags:
-        - User Module
-      summary: User Profile API
-      description: API for fetching a user profile
-      #produces:
-       # - application/json
+        - Transaction Module
+      summary: View Monthly Transactions
+      description: API to retrieve all transactions for the current month, grouped by account
+      parameters:
+        - in: query
+          name: accountId
+          type: string
+          required: false
+          description: Optional account ID to filter transactions by a specific account
+      produces:
+        - application/json
       responses:
         '200':
-          description: User profile retrieved successully
+          description: Monthly transactions retrieved successfully
           schema:
-            $ref: '#/definitions/ApiResponse'
+            $ref: '#/definitions/MonthlyTransactionsResponse'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+  /transaction/{transactionId}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Transaction Module
+      summary: View Transaction Details
+      description: API to view details of a specific transaction
+      parameters:
+        - in: path
+          name: transactionId
+          required: true
+          type: string
+          description: ID of the transaction to retrieve
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Transaction details retrieved successfully
+          schema:
+            $ref: '#/definitions/TransactionDetailsResponse'
         '400':
           description: Invalid Fields
         '500':
@@ -80,58 +63,40 @@ paths:
       security:
         - Bearer: []
       tags:
-        - User Module
-      summary: User Profile API
-      description: API for updating a user profile
+        - Transaction Module
+      summary: Update Transaction
+      description: API to update information about a specific transaction (only category and note can be modified)
       parameters:
+        - in: path
+          name: transactionId
+          required: true
+          type: string
+          description: ID of the transaction to update
         - in: body
           name: body
-          description: Update user profile attributes
+          description: Transaction update payload
           required: true
           schema:
-            $ref: '#/definitions/UserProfile'
+            $ref: '#/definitions/TransactionUpdate'
       produces:
         - application/json
       responses:
         '200':
-          description: User profile retrieved successully
+          description: Transaction updated successfully
           schema:
             $ref: '#/definitions/ApiResponse'
         '400':
           description: Invalid Fields
         '500':
           description: Internal Server Error
+
 securityDefinitions:
   Bearer:
     type: apiKey
     name: Authorization
     in: header
+
 definitions:
-  User:
-    properties:
-      email:
-        type: string
-        description: user email
-      password:
-        type: string
-        description: user password
-      firstName:
-        type: string
-        description: user first name
-      lastName:
-        type: string
-        description: user last name
-      userName:
-        type: string
-        description: user public name
-  Login:
-    properties:
-      email:
-        type: string
-        description: user email
-      password:
-        type: string
-        description: user password
   ApiResponse:
     type: object
     properties:
@@ -146,13 +111,45 @@ definitions:
             type: string
           email:
             type: string
-  LoginResponse:
+  MonthlyTransactionsResponse:
     type: object
     properties:
-      token:
+      transactions:
+        type: array
+        items:
+          $ref: '#/definitions/Transaction'
+      accountId:
         type: string
-  UserProfile:
+        description: Account ID the transactions are grouped by
+  Transaction:
     type: object
     properties:
-      userName:
+      transactionId:
+        type: string
+      date:
+        type: string
+      description: 
+        type: string
+      amount:
+        type: number
+      balance: 
+        type: number
+      transaction type: 
+        type: string
+      category:
+        type: string
+      note:
+        type: string
+        description: Optional note for the transaction
+  TransactionDetailsResponse:
+    type: object
+    properties:
+      transaction:
+        $ref: '#/definitions/Transaction'
+  TransactionUpdate:
+    type: object
+    properties:
+      category:
+        type: string
+      note:
         type: string
