@@ -1,30 +1,31 @@
 import './userAccount.css';
-import { useState } from 'react';  
+import { useEffect, useState } from 'react';
+import { useProfile } from '../../hooks/useProfile';
 import EditNameForm from '../editNameForm/EditNameForm';
 
-interface UserAccountProps {
-  firstname: string;
-  lastname: string;
-}
-
-function UserAccount(props: UserAccountProps) {
+function UserAccount() {
+  const { profile, firstName, lastName } = useProfile();
   const [showEditForm, setShowEditForm] = useState(false);
 
+  useEffect(() => {
+    profile();
+  }, [profile]);
+
   const toggleEditForm = () => {
-    setShowEditForm(!showEditForm); 
+    setShowEditForm(!showEditForm);
   };
 
   return (
     <>
-      <div className='user-account-block'>
-        <h2 className='user-title'>
+      <div className="user-account-block">
+        <h2 className="user-title">
           Welcome back<br />
-          {props.firstname} {props.lastname} !
+          {firstName} {lastName} !
         </h2>
-        <button className='btn-edit-name' onClick={toggleEditForm}>
+        <button className="btn-edit-name" onClick={toggleEditForm}>
           {showEditForm ? 'Cancel' : 'Edit name'}
         </button>
-        {showEditForm && <EditNameForm setShowEditForm={setShowEditForm} />} 
+        {showEditForm && <EditNameForm setShowEditForm={setShowEditForm} />}
       </div>
     </>
   );
