@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from '../redux/store';
+import { setUserProfile } from '../redux/reducer';
 
-// base url
 const api = axios.create({
   baseURL: "http://localhost:3001"
 });
@@ -18,6 +18,7 @@ interface ProfileResponse {
 
 export const useProfile = () => {
   const [hasError, setHasError] = useState<boolean>(false);
+  const dispatch = useDispatch();
   const [firstName, setFirstName] = useState<string>('');
   const [lastName, setLastName] = useState<string>('');
   const [userName, setUserName] = useState<string>('');
@@ -25,10 +26,12 @@ export const useProfile = () => {
 
   const profile = async () : Promise<void> => {
     try {
-      const response : AxiosResponse<ProfileResponse> = await api.post('/api/v1/user/profile', null, {
-        headers: { Authorization: `Bearer ${token}`}
+      const response: AxiosResponse<ProfileResponse> = await api.get('/api/v1/user/profile', {
+        headers: { Authorization: `Bearer ${token}` }
       });
+      console.log(response.data); 
       const { firstName, lastName, userName } = response.data.body;
+      dispatch(setUserProfile({ firstName, lastName, userName }));
       setFirstName(firstName);
       setLastName(lastName);
       setUserName(userName);
@@ -44,5 +47,5 @@ export const useProfile = () => {
     lastName,
     userName,
     hasError
-  }
+  };
 }
