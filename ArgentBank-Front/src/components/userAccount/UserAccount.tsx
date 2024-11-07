@@ -10,6 +10,7 @@ function UserAccount() {
   useEffect(() => {
     profile();
   }, [profile]);
+  console.log(useEffect);
 
   const toggleEditForm = () => {
     setShowEditForm(!showEditForm);
