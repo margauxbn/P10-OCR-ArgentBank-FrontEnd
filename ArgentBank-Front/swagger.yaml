@@ -53,6 +53,36 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - Transaction Module
+      summary: Add Information to a Transaction
+      description: API to add additional information to a specific transaction
+      parameters:
+        - in: path
+          name: transactionId
+          required: true
+          type: string
+          description: ID of the transaction to which information will be added
+        - in: body
+          name: body
+          description: Payload containing additional information for the transaction
+          required: true
+          schema:
+            $ref: '#/definitions/TransactionAdditionalInfo'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Information added to transaction successfully
+          schema:
+            $ref: '#/definitions/ApiResponse'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
     put:
       security:
         - Bearer: []
@@ -81,6 +111,37 @@ paths:
             $ref: '#/definitions/ApiResponse'
         '400':
           description: Invalid Fields
+        '500':
+          description: Internal Server Error
+     delete:
+      security:
+        - Bearer: []
+      tags:
+        - Transaction Module
+      summary: Delete Information from a Transaction
+      description: API to delete specific information from a transaction
+      parameters:
+        - in: path
+          name: transactionId
+          required: true
+          type: string
+          description: ID of the transaction from which information will be deleted
+        - in: query
+          name: field
+          required: true
+          type: string
+          description: The field to delete from the transaction (e.g., `note`, `category`)
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Information deleted from transaction successfully
+          schema:
+            $ref: '#/definitions/ApiResponse'
+        '400':
+          description: Invalid Fields
+        '404':
+          description: Field not found
         '500':
           description: Internal Server Error
 
@@ -140,6 +201,12 @@ definitions:
     properties:
       transaction:
         $ref: '#/definitions/Transaction'
+  TransactionAdditionalInfo:
+    type: object
+    properties:
+      additionalField:
+        type: string
+        description: Example of additional field to add
   TransactionUpdate:
     type: object
     properties:
@@ -147,3 +214,9 @@ definitions:
         type: string
       note:
         type: string
+   DeletableFields:
+    type: object
+    properties:
+      field:
+        type: string
+        description: The name of the field to delete (e.g., `note`, `category`)
