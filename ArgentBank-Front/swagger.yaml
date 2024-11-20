@@ -113,37 +113,42 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-     delete:
-      security:
-        - Bearer: []
-      tags:
-        - Transaction Module
-      summary: Delete Information from a Transaction
-      description: API to delete specific information from a transaction
-      parameters:
-        - in: path
-          name: transactionId
-          required: true
-          type: string
-          description: ID of the transaction from which information will be deleted
-        - in: query
-          name: field
-          required: true
-          type: string
-          description: The field to delete from the transaction (e.g., `note`, `category`)
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: Information deleted from transaction successfully
-          schema:
-            $ref: '#/definitions/ApiResponse'
-        '400':
-          description: Invalid Fields
-        '404':
-          description: Field not found
-        '500':
-          description: Internal Server Error
+    delete:
+        security:
+          - Bearer: []
+        tags:
+          - Transaction Module
+        summary: Delete Information from a Transaction
+        description: API to delete specific information from a transaction
+        parameters:
+          - in: path
+            name: transactionId
+            required: true
+            type: string
+            description: ID of the transaction from which information will be deleted
+          - in: query
+            name: field
+            required: true
+            type: string
+            description: The field to delete from the transaction (e.g., `note`, `category`)
+          - in: body
+            name: body
+            required: true
+            schema:
+              $ref: '#/definitions/DeletableFields'
+        produces:
+          - application/json
+        responses:
+          '200':
+            description: Information deleted from transaction successfully
+            schema:
+              $ref: '#/definitions/ApiResponse'
+          '400':
+            description: Invalid Fields
+          '404':
+            description: Field not found
+          '500':
+            description: Internal Server Error
 
 securityDefinitions:
   Bearer:
@@ -214,7 +219,7 @@ definitions:
         type: string
       note:
         type: string
-   DeletableFields:
+  DeletableFields:
     type: object
     properties:
       field:
